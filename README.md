@@ -1,5 +1,10 @@
-# Few-shot Acoustic Synthesis with Multimodal Flow Matching [CVPR 2026]
-Training and inference code for the paper [Few-shot Acoustic Synthesis with Multimodal Flow Matching](). 
+# Few-shot Acoustic Synthesis with Multimodal Flow Matching
+Training and inference code for the paper "Few-shot Acoustic Synthesis with Multimodal Flow Matching", accepted at CVPR 2026.
+
+<p align="center" style="margin: 2em auto;">
+    <a href='https://amandinebtto.github.io/FLAC' style='padding-left: 0.5rem;'><img src='https://img.shields.io/badge/FLAC-Project_page-orange?style=flat&logo=github&logoColor=orange' alt='Project Page'></a>
+</p>
+
 
 This repository includes:
 - **FLAC**: our method for one-shot room impulse response generation.
