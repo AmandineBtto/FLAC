@@ -1,0 +1,58 @@
+{
+    "classroomBase": [
+        "0.wav",
+        "57.wav",
+        "114.wav",
+        "171.wav",
+        "228.wav",
+        "285.wav",
+        "342.wav",
+        "399.wav",
+        "456.wav",
+        "513.wav",
+        "570.wav",
+        "627.wav"
+    ],
+    "complexBase": [
+        "5.wav",
+        "47.wav",
+        "82.wav",
+        "117.wav",
+        "145.wav",
+        "187.wav",
+        "220.wav",
+        "255.wav",
+        "290.wav",
+        "342.wav",
+        "372.wav",
+        "404.wav"
+    ],
+    "dampenedBase": [
+        "0.wav",
+        "23.wav",
+        "46.wav",
+        "69.wav",
+        "104.wav",
+        "115.wav",
+        "138.wav",
+        "161.wav",
+        "184.wav",
+        "207.wav",
+        "230.wav",
+        "253.wav"
+    ],
+    "hallwayBase": [
+        "5.wav",
+        "58.wav",
+        "99.wav",
+        "148.wav",
+        "203.wav",
+        "241.wav",
+        "296.wav",
+        "342.wav",
+        "384.wav",
+        "441.wav",
+        "482.wav",
+        "535.wav"
+    ]
+}

@@ -1,0 +1,168 @@
+{
+    "model_type": "diffusion_cond",
+    "sample_size": 10240,
+    "sample_rate": 22050,
+    "audio_channels": 1,
+    "model": {
+        "pretransform": {
+            "type": "autoencoder",
+            "iterate_batch": true,
+            "config": {
+                "encoder": {
+                    "type": "oobleck",
+                    "config": {
+                       "in_channels": 1,
+                        "channels": 64,
+                        "c_mults": [1, 2, 4, 8],
+                        "strides": [2, 4, 8, 16],
+                        "latent_dim": 64,
+                        "use_snake": true
+                    }
+                },
+                "decoder": {
+                    "type": "oobleck",
+                    "config": {
+                         "out_channels": 1,
+                        "channels": 64,
+                        "c_mults": [1, 2, 4, 8],
+                        "strides": [2, 4, 8, 16],
+                        "latent_dim": 32,
+                        "use_snake": true,
+                        "final_tanh": true
+                    }
+                },
+                "bottleneck": {
+                    "type": "vae"
+                },
+                "latent_dim": 32,
+                "downsampling_ratio": 1024,
+                "io_channels": 1
+            }
+        },
+        "conditioning": {
+            "configs": [
+                {
+                    "id": "source",
+                    "type": "dist_embedder",
+                    "config": {
+                        "num_freqs": 20,
+                        "max_freq": 10,
+                        "ch_dim": 1,
+                        "include_in": true
+                    }
+                },
+
+                {
+                    "id": "source_vit",
+                    "type": "ViTCoordinates",
+                    "config": {
+                         "ViT":{
+                            "hf_model_name_or_path": "/media/amandine/SSD3TB/Models/dinov3-vits16-pretrain-lvd1689m", 
+                            "ch_dim": 3, 
+                            "freeze": false,
+                            "from_scratch": false,
+                            "img_h": 256,
+                            "img_w": 512
+                        }, 
+                        "max_value": 1
+                    }
+                }, 
+
+                {
+                    "id": "context_poses_vit",
+                    "type": "ViTCoordinates",
+                    "config": {
+                         "ViT":{
+                            "hf_model_name_or_path": "/media/amandine/SSD3TB/Models/dinov3-vits16-pretrain-lvd1689m", 
+                            "ch_dim": 3, 
+                            "freeze": false,
+                            "from_scratch": false, 
+                            "img_h": 256,
+                            "img_w": 512
+                        }, 
+                        "max_value": 1
+                    }
+                }, 
+
+                {
+                    "id": "context_poses",
+                    "type": "dist_embedder",
+                    "config": {
+                        "num_freqs": 20,
+                        "max_freq": 10,
+                        "ch_dim": 1,
+                        "include_in": true
+                    }
+                },
+
+                {
+                    "id": "context_audio",
+                    "type": "pretransform", 
+                    "config": {
+                        "sample_rate": 22050,
+                        "sample_size": 10240,
+                        "use_model_pretransform": true, 
+                        "pretransform_ckpt_path": "./weights/VAE.safetensors"
+                    }
+                }
+
+            ],
+            "cond_dim": 256
+        },
+        "diffusion": {
+            "cross_attention_cond_ids": ["context_poses_vit", "context_poses", "context_audio"],
+            "global_cond_ids": ["source", "source_vit"],
+            "type": "dit",
+            "diffusion_objective": "rectified_flow",
+            "config": {
+                "io_channels": 32,
+                "embed_dim": 256,
+                "depth": 12,
+                "num_heads": 8,
+                "cond_token_dim": 256,
+                "global_cond_dim": 512,
+                "project_cond_tokens": false,
+                "transformer_type": "continuous_transformer", 
+                "global_cond_type": "adaLN"
+            }
+        },
+        "io_channels": 32
+    },
+    "training": {
+        "timestep_sampler": "log_snr",
+        "mask_padding": true, 
+        "mask_padding_dropout": 0.0,
+        "cfg_dropout_prob": 0.1,
+        "use_ema": true,
+        "log_loss_info": false,
+        "optimizer_configs": {
+            "diffusion": {
+                "optimizer": {
+                    "type": "AdamW",
+                    "config": {
+                        "lr": 5e-5,
+                        "betas": [0.9, 0.999],
+                        "weight_decay": 1e-3
+                    }
+                },
+                "scheduler": {
+                    "type": "InverseLR",
+                    "config": {
+                        "inv_gamma": 1000000,
+                        "power": 0.5,
+                        "warmup": 0.99
+                    }
+                }
+            }
+        }, 
+        "metrics":{
+            "dataset_name": "AcousticRooms",
+            "eval_T60": true,
+            "eval_C50": true, 
+            "eval_EDT": true, 
+            "eval_FD": true,
+            "eval_retrieval": true, 
+            "AGREE_ckpt": "weights/AGREE/AGREE_fullAR.pt"
+        }
+    }
+}

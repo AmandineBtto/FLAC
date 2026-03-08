@@ -1,0 +1,33 @@
+{
+    "dataset_type": "audio_dir",
+    "datasets": [
+        {
+            "id": "HAA",
+            "path": "/path/to/HAA",
+            "json_file_path": "FLAC/data/HAA/val_base.json",
+            "custom_metadata_module": "src/configs/dataset_configs/custom_metadata/HAA_md.py",
+            "folder_name": "mono_rirs_22050Hz"
+        }
+
+    ],
+    "random_crop": false,
+    "augs": false,
+    "force_channels": "mono", 
+    "is_eval": true,
+    "seeneval": true,
+    "drop_last": false,
+
+    "modalities": {
+        "acoustic_context": {
+            "load": true,
+            "max_context": 8, 
+            "max_len": 9600
+        }, 
+        "depth": {
+            "load": true
+        }, 
+        "poses": {
+            "load": true
+        }
+    }  
+}

@@ -1,0 +1,22 @@
+{
+    "embed_dim": 512,
+    "vision_cfg": {
+        "hf_model_name": "facebook/dinov3-vits16-pretrain-lvd1689m",
+        "in_channels": 3, 
+        "frozen": false, 
+        "from_scratch": false
+    },
+     "audio_cfg": {
+        "model_name": "VAE",
+        "sample_rate": 22050,
+        "audio_length": 10240,
+        "ds_ratio": 1024,
+        "in_channels": 1, 
+        "channels": 64,
+        "c_mults": [1, 2, 4, 8],
+        "strides": [2, 4, 8, 16],
+        "latent_dim": 64,
+        "use_snake": true,
+        "pretrained": "FLAC/weights/FLAC/VAE.ckpt"
+    }
+}
