@@ -3,8 +3,9 @@ Training and inference code for the paper "Few-shot Acoustic Synthesis with Mult
 
 <p align="center" style="margin: 2em auto;">
     <a href='https://amandinebtto.github.io/FLAC' style='padding-left: 0.5rem;'><img src='https://img.shields.io/badge/FLAC-Project_page-orange?style=flat&logo=github&logoColor=orange' alt='Project Page'></a>
-    <a href="https://huggingface.co/AmandineBtto/FLAC" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-FLACWeights-blue" alt="Weights"></a>
-    <a href="https://huggingface.co/AmandineBtto/AGREE" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-AGREEWeights-blue" alt="Weights"></a>
+    <a href='https://arxiv.org/abs/2603.19176'><img src='https://img.shields.io/badge/arXiv-Paper-red?style=flat&logo=arXiv&logoColor=green' alt='arXiv'></a>
+    <a href="https://huggingface.co/AmandineBtto/FLAC" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-FLAC_Weights-blue" alt="Weights"></a>
+    <a href="https://huggingface.co/AmandineBtto/AGREE" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-AGREE_Weights-blue" alt="Weights"></a>
 </p>
 
 
