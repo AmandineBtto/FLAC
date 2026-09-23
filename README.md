@@ -328,6 +328,11 @@ python -m AGREE_train.main \
 # Acknowledgements
 Part of the code from this codebase is derived from [stable-audio-tools codebase](https://github.com/Stability-AI/stable-audio-tools) and from [open-clip](https://github.com/mlfoundations/open_clip). We thank the authors for making their code public and open-source, which greatly facilitated our work.
 
+# License
+This code is released under the MIT License (see [LICENSE](LICENSE)).
+
+Note: some dependencies used by this project (e.g., Stable Audio Open) are released under their own, more restrictive licenses. Please check their respective licenses.
+
 # Citation
 If you find this code useful, please consider citing the paper:
 ```
